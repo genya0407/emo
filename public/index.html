@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<body>
+  <div id="main">
+  </div>
+
+  <script>
+    const $ = (q) => document.querySelector(q)
+    const $$ = (q) => Array.from(document.querySelectorAll(q))
+    const distance = (pt1, pt2) => Math.sqrt((pt1.x - pt2.x) ** 2 + (pt1.y - pt2.y) ** 2);
+    const drawLine = (target, pt1, pt2) => {
+      const line = document.createElement("div")
+      line.style = `
+        position: relative;
+        left: ${pt1.x}px;
+        top: ${pt1.y}px;
+        height: 0px;
+        width: ${distance(pt1, pt2)}px;
+        border: solid 0.5px;
+        transform-origin: left top;
+        transform: rotate(${Math.atan2(pt2.y - pt1.y, pt2.x - pt1.x)}rad);
+      `
+      target.appendChild(line)
+    };
+
+    $('#main').style = `
+      position: relative;
+      width: 600px;
+      height: 600px;
+      border: dotted 1px;
+      margin: 200px auto;
+    `
+
+    drawLine($('#main'), { x: 0, y: 0 }, { x: 200, y: 200 });
+    drawLine($('#main'), { x: 200, y: 0 }, { x: 0, y: 200 });
+  </script>
+</body>
+
+</html>

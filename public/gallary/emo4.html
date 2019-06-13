@@ -16,6 +16,8 @@
     const mod = (a, b) => ((a % b) + b) % b;
 
     // Paint functions
+    const moveX = (pt, dx) => ({ ...pt, x: pt.x + dx })
+    const moveY = (pt, dy) => ({ ...pt, y: pt.y + dy })
     const distance = (pt1, pt2) => Math.sqrt((pt1.x - pt2.x) ** 2 + (pt1.y - pt2.y) ** 2);
     const drawLine = (target, pt1, pt2) => {
       const line = document.createElement("div")
@@ -56,7 +58,7 @@
 
     const fps = 30
     const interval = 1000 / fps
-    const polyNum = 20
+    const polyNum = 2
     const speedCoeff = 1 / 300
     let frame = 0
     setInterval(() => {
@@ -66,14 +68,26 @@
       const bottomCenter = { x: 300, y: 600 - 100 }
       for (let i = 0; i < polyNum; i = i + 1) {
         // Outer
-        const outerEllipsePt1 = ellipsePt(topCenter, 200, frame * speedCoeff, 2 * Math.PI * (mod(i + 6, polyNum) / polyNum))
-        const outerEllipsePt2 = ellipsePt(bottomCenter, 200, frame * speedCoeff, 2 * Math.PI * (i / polyNum))
-        drawLine(main, outerEllipsePt1, outerEllipsePt2)
+        const outerEllipseTopPt = ellipsePt(topCenter, 200, frame * speedCoeff, 2 * Math.PI * (i / polyNum))
+        const outerEllipseBottomPt = ellipsePt(bottomCenter, 200, frame * speedCoeff, 2 * Math.PI * (i / polyNum))
+        drawLine(main, outerEllipseTopPt, outerEllipseBottomPt)
+
+        // cross line
+        const nextOuterEllipseTopPt = ellipsePt(topCenter, 200, frame * speedCoeff, 2 * Math.PI * (i + 1 / polyNum))
+        const nextOuterEllipseBottomPt = ellipsePt(bottomCenter, 200, frame * speedCoeff, 2 * Math.PI * (i + 1 / polyNum))
+        drawLine(main, moveY(outerEllipseTopPt, 100), moveY(nextOuterEllipseTopPt, 100))
+        drawLine(main, moveY(outerEllipseBottomPt, -100), moveY(nextOuterEllipseBottomPt, -100))
 
         // Inner
-        const innerEllipsePt1 = ellipsePt(topCenter, 100, frame * speedCoeff * 5, 2 * Math.PI * (mod(i + 6, polyNum) / polyNum))
-        const innerEllipsePt2 = ellipsePt(bottomCenter, 100, frame * speedCoeff * 5, 2 * Math.PI * (i / polyNum))
-        drawLine(main, innerEllipsePt1, innerEllipsePt2)
+        const innerEllipseTopPt = ellipsePt(topCenter, 100, frame * speedCoeff * 5, 2 * Math.PI * (i / polyNum))
+        const innerEllipseBottomPt = ellipsePt(bottomCenter, 100, frame * speedCoeff * 5, 2 * Math.PI * (i / polyNum))
+        drawLine(main, moveY(innerEllipseTopPt, 150), moveY(innerEllipseBottomPt, -150))
+
+        // cross line
+        const nextInnerEllipseTopPt = ellipsePt(topCenter, 100, frame * speedCoeff * 5, 2 * Math.PI * (i + 1 / polyNum))
+        const nextInnerEllipseBottomPt = ellipsePt(bottomCenter, 100, frame * speedCoeff * 5, 2 * Math.PI * (i + 1 / polyNum))
+        drawLine(main, moveY(innerEllipseTopPt, 150), moveY(nextInnerEllipseTopPt, 150))
+        drawLine(main, moveY(innerEllipseBottomPt, -150), moveY(nextInnerEllipseBottomPt, -150))
       }
 
       frame += 1;

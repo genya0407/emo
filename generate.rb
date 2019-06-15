@@ -1,7 +1,7 @@
 require "erb"
 require "fileutils"
 
-FileUtils.rm_r "./public"
+FileUtils.rm_r "./public", secure: true if File.exist? "./public"
 FileUtils.mkdir_p(["./public/javascripts", "./public/gallery"])
 
 emo_names = Dir.glob("./javascripts/*").map { |e| e.match(%r[./javascripts/(.+).js])[1] }.sort

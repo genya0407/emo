@@ -1,25 +1,34 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" style="height: 100%;">
 
 <head>
-  <meta name="viewport" content="width=620px">
+  <title>emo6 bunbun goma - emogallery</title>
+  <meta name="viewport" content="width=720px">
 </head>
 
-<body>
-  <div id="main">
-  </div>
+<body style="height: 100%;">
+  <div style="max-width: 620px; margin: auto; padding: 50px; height: max(100vh, 100%); border-left: solid 1px; border-right: solid 1px;">
+    <div style='text-align: center;'>
+    <a style="color: black;" href="/">Emos</a> &gt;&gt; <a style="color: black;" href="/gallery/emo6 bunbun goma.html">emo6 bunbun goma</a>
+    </div>
 
-  <script>
-    // utilities
-    const $ = (q) => document.querySelector(q)
-    const $$ = (q) => Array.from(document.querySelectorAll(q))
-    const mod = (a, b) => ((a % b) + b) % b;
+    <h1 style='text-align: center;'>emo6 bunbun goma</h1>
+    <div id="main">
+    </div>
 
-    // Paint functions
-    const distance = (pt1, pt2) => Math.sqrt((pt1.x - pt2.x) ** 2 + (pt1.y - pt2.y) ** 2);
-    const drawLine = (target, pt1, pt2) => {
-      const line = document.createElement("div")
-      line.style = `
+  <h2 style='text-align: center;'> Code </h2>
+<pre class="prettyprint linenums" style="white-space: pre-wrap;">
+
+// utilities
+const $ = (q) => document.querySelector(q)
+const $$ = (q) => Array.from(document.querySelectorAll(q))
+const mod = (a, b) => ((a % b) + b) % b;
+
+// Paint functions
+const distance = (pt1, pt2) => Math.sqrt((pt1.x - pt2.x) ** 2 + (pt1.y - pt2.y) ** 2);
+const drawLine = (target, pt1, pt2) => {
+  const line = document.createElement("div")
+  line.style = `
         position: absolute;
         left: ${pt1.x}px;
         top: ${pt1.y}px;
@@ -31,22 +40,22 @@
         transform-origin: left top;
         transform: rotate(${Math.atan2(pt2.y - pt1.y, pt2.x - pt1.x)}rad);
       `
-      target.appendChild(line)
-    };
-    const ellipsePt = (center, r, t, offset = 0, ellipseCoeff = 0.5) => {
-      const dx = r * Math.cos(2 * Math.PI * t + offset)
-      const dy = ellipseCoeff * r * Math.sin(2 * Math.PI * t + offset)
-      return { x: center.x + dx, y: center.y + dy }
-    }
-    const clear = (target) => {
-      while (target.firstChild) {
-        target.removeChild(target.firstChild);
-      }
-    }
+  target.appendChild(line)
+};
+const ellipsePt = (center, r, t, offset = 0, ellipseCoeff = 0.5) => {
+  const dx = r * Math.cos(2 * Math.PI * t + offset)
+  const dy = ellipseCoeff * r * Math.sin(2 * Math.PI * t + offset)
+  return { x: center.x + dx, y: center.y + dy }
+}
+const clear = (target) => {
+  while (target.firstChild) {
+    target.removeChild(target.firstChild);
+  }
+}
 
-    // main logics
-    const main = $('#main')
-    main.style = `
+// main logics
+const main = $('#main')
+main.style = `
       position: relative;
       width: 600px;
       height: 600px;
@@ -54,27 +63,39 @@
       margin: auto;
     `
 
-    const fps = 30
-    const interval = 1000 / fps
-    const polyNum = 8
-    const speedCoeff = 10 / 300
-    let frame = 0
-    setInterval(() => {
-      clear(main)
+const fps = 30
+const interval = 1000 / fps
+const polyNum = 8
+const speedCoeff = 10 / 300
+let frame = 0
+setInterval(() => {
+  clear(main)
 
-      const topPt = { x: 300, y: 100 }
-      const bottomPt = { x: 300, y: 600 - 100 }
-      for (let i = 0; i < polyNum; i = i + 1) {
-        const onEllipsePt1 = ellipsePt({ x: 300, y: 300 }, 200, Math.sin(frame * speedCoeff), 2 * Math.PI * (mod(i + 1, polyNum) / polyNum))
-        const onEllipsePt2 = ellipsePt({ x: 300, y: 300 }, 200, Math.sin(frame * speedCoeff), 2 * Math.PI * (i / polyNum))
-        drawLine(main, onEllipsePt1, onEllipsePt2)
-        drawLine(main, topPt, onEllipsePt1)
-        drawLine(main, bottomPt, onEllipsePt1)
-      }
+  const topPt = { x: 300, y: 100 }
+  const bottomPt = { x: 300, y: 600 - 100 }
+  for (let i = 0; i < polyNum; i = i + 1) {
+    const onEllipsePt1 = ellipsePt({ x: 300, y: 300 }, 200, Math.sin(frame * speedCoeff), 2 * Math.PI * (mod(i + 1, polyNum) / polyNum))
+    const onEllipsePt2 = ellipsePt({ x: 300, y: 300 }, 200, Math.sin(frame * speedCoeff), 2 * Math.PI * (i / polyNum))
+    drawLine(main, onEllipsePt1, onEllipsePt2)
+    drawLine(main, topPt, onEllipsePt1)
+    drawLine(main, bottomPt, onEllipsePt1)
+  }
 
-      frame += 1;
-    }, interval)
+  frame += 1;
+}, interval)
+
+</pre>
+</div>
+
+  <script src="/javascripts/emo6 bunbun goma.js">
   </script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <style>
+    li.L0, li.L1, li.L2, li.L3,
+    li.L5, li.L6, li.L7, li.L8 {
+      list-style-type: decimal !important;
+    }
+  </style>
 </body>
 
 </html>

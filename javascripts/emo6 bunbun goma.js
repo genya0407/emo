@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja" style="height: 100%;">
 
-<head>
-  <title>emo5 bangasa - emogallery</title>
-  <meta name="viewport" content="width=720px">
-</head>
-
-<body style="height: 100%;">
-  <div style="max-width: 620px; margin: auto; padding: 50px; height: max(100vh, 100%); border-left: solid 1px; border-right: solid 1px;">
-    <div style='text-align: center;'>
-    <a style="color: black;" href="/">Emos</a> &gt;&gt; <a style="color: black;" href="/gallery/emo5 bangasa.html">emo5 bangasa</a>
-    </div>
-
-    <h1 style='text-align: center;'>emo5 bangasa</h1>
-    <div id="main">
-    </div>
-
-  <h2 style='text-align: center;'> Code </h2>
-<pre class="prettyprint linenums" style="white-space: pre-wrap;">
 // utilities
 const $ = (q) => document.querySelector(q)
 const $$ = (q) => Array.from(document.querySelectorAll(q))
@@ -64,8 +45,8 @@ main.style = `
 
 const fps = 30
 const interval = 1000 / fps
-const polyNum = 30
-const speedCoeff = 1 / 300
+const polyNum = 8
+const speedCoeff = 10 / 300
 let frame = 0
 setInterval(() => {
   clear(main)
@@ -73,29 +54,12 @@ setInterval(() => {
   const topPt = { x: 300, y: 100 }
   const bottomPt = { x: 300, y: 600 - 100 }
   for (let i = 0; i < polyNum; i = i + 1) {
-    const onEllipsePt1 = ellipsePt({ x: 300, y: 220 }, 200, frame * speedCoeff, 2 * Math.PI * (mod(i + 1, polyNum) / polyNum))
-    const onEllipsePt2 = ellipsePt({ x: 300, y: 220 }, 200, frame * speedCoeff, 2 * Math.PI * (i / polyNum))
+    const onEllipsePt1 = ellipsePt({ x: 300, y: 300 }, 200, Math.sin(frame * speedCoeff), 2 * Math.PI * (mod(i + 1, polyNum) / polyNum))
+    const onEllipsePt2 = ellipsePt({ x: 300, y: 300 }, 200, Math.sin(frame * speedCoeff), 2 * Math.PI * (i / polyNum))
     drawLine(main, onEllipsePt1, onEllipsePt2)
     drawLine(main, topPt, onEllipsePt1)
-    drawLine(main, topPt, bottomPt)
-    // drawLine(main, bottomPt, onEllipsePt1)
+    drawLine(main, bottomPt, onEllipsePt1)
   }
 
   frame += 1;
 }, interval)
-
-</pre>
-</div>
-
-  <script src="/javascripts/emo5 bangasa.js">
-  </script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-  <style>
-    li.L0, li.L1, li.L2, li.L3,
-    li.L5, li.L6, li.L7, li.L8 {
-      list-style-type: decimal !important;
-    }
-  </style>
-</body>
-
-</html>

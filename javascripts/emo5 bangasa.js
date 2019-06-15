@@ -1,23 +1,3 @@
-<!DOCTYPE html>
-<html lang="ja" style="height: 100%;">
-
-<head>
-  <title>emo5 bangasa - emogallery</title>
-  <meta name="viewport" content="width=720px">
-</head>
-
-<body style="height: 100%;">
-  <div style="max-width: 620px; margin: auto; padding: 50px; height: max(100vh, 100%); border-left: solid 1px; border-right: solid 1px;">
-    <div style='text-align: center;'>
-    <a style="color: black;" href="/">Emos</a> &gt;&gt; <a style="color: black;" href="/gallery/emo5 bangasa.html">emo5 bangasa</a>
-    </div>
-
-    <h1 style='text-align: center;'>emo5 bangasa</h1>
-    <div id="main">
-    </div>
-
-  <h2 style='text-align: center;'> Code </h2>
-<pre class="prettyprint linenums" style="white-space: pre-wrap;">
 // utilities
 const $ = (q) => document.querySelector(q)
 const $$ = (q) => Array.from(document.querySelectorAll(q))
@@ -83,19 +63,3 @@ setInterval(() => {
 
   frame += 1;
 }, interval)
-
-</pre>
-</div>
-
-  <script src="/javascripts/emo5 bangasa.js">
-  </script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-  <style>
-    li.L0, li.L1, li.L2, li.L3,
-    li.L5, li.L6, li.L7, li.L8 {
-      list-style-type: decimal !important;
-    }
-  </style>
-</body>
-
-</html>

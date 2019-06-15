@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+  <title>Emo</title>
+</head>
+<body>
+  <div style='max-width:620px; margin: 0px auto; padding: 50px; height: 100vh; border-left: solid 1px; border-right: solid 1px;'>
+    <h1> Emos </h1>
+    <div>
+      <ul>
+        <% @emo_names.each do |emo_name| %>
+        <li><a href='/gallery/<%= emo_name %>.html'><%= emo_name %></a></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

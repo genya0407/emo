@@ -4,6 +4,8 @@ require "fileutils"
 FileUtils.rm_r "./public", secure: true if File.exist? "./public"
 FileUtils.mkdir_p(["./public/javascripts", "./public/gallery"])
 
+FileUtils.cp_r("./images", "./public/images")
+
 emo_names = Dir.glob("./javascripts/*").map { |e| e.match(%r[./javascripts/(.+).js])[1] }.sort
 
 # generate emos
